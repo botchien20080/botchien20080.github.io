@@ -1,4 +1,4 @@
-Chắc chắn rồi! Dưới đây là một ví dụ về một trang web cơ bản sử dụng HTML và CSS:
+Dưới đây là một ví dụ về một trang web liệt kê các phần mềm sử dụng HTML và CSS:
 
 ```html
 <!DOCTYPE html>
@@ -6,7 +6,7 @@ Chắc chắn rồi! Dưới đây là một ví dụ về một trang web cơ b
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Trang Web Cơ Bản</title>
+    <title>Danh Sách Phần Mềm</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -38,6 +38,16 @@ Chắc chắn rồi! Dưới đây là một ví dụ về một trang web cơ b
         main {
             padding: 20px;
         }
+        .software-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .software-list li {
+            background-color: white;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
         footer {
             background-color: #333;
             color: white;
@@ -51,7 +61,7 @@ Chắc chắn rồi! Dưới đây là một ví dụ về một trang web cơ b
 </head>
 <body>
     <header>
-        <h1>Chào Mừng Đến Với Trang Web Cơ Bản</h1>
+        <h1>Danh Sách Phần Mềm</h1>
     </header>
     <nav>
         <a href="#home">Trang Chủ</a>
@@ -59,12 +69,23 @@ Chắc chắn rồi! Dưới đây là một ví dụ về một trang web cơ b
         <a href="#contact">Liên Hệ</a>
     </nav>
     <main>
-        <h2>Giới Thiệu</h2>
-        <p>Đây là một trang web cơ bản sử dụng HTML và CSS. Bạn có thể tùy chỉnh nội dung và phong cách theo ý thích của mình.</p>
+        <h2>Phần Mềm</h2>
+        <ul class="software-list">
+            <li>Phần Mềm 1</li>
+            <li>Phần Mềm 2</li>
+            <li>Phần Mềm 3</li>
+            <li>Phần Mềm 4</li>
+            <li>Phần Mềm 5</li>
+        </ul>
     </main>
     <footer>
-        <p>&copy; 2024 Trang Web Cơ Bản</p>
+        <p>&copy; 2024 Danh Sách Phần Mềm</p>
     </footer>
 </body>
 </html>
 ```
+
+Bạn có thể sao chép mã này vào một tệp có đuôi `.html` và mở nó bằng trình duyệt để xem kết quả. Nếu bạn muốn thêm hoặc chỉnh sửa thông tin, hãy cho tôi biết nhé!
+
+Source: Conversation with Copilot, 14/08/2024
+(1) github.com. https://github.com/higithub97/OMG-Web/tree/340263c83461750ab627d955969b96d400b0213e/DOMjs%2FDOMevent.md.
