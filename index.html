@@ -1,34 +1,47 @@
-
 <!DOCTYPE html>
-<html lang="vi">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Cập nhật Link Phần Mềm</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Software Categories</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-<h1>Trang Cập Nhật Link Phần Mềm</h1>
-<form id="software-link-form">
-    <label for="software-name">Tên Phần Mềm:</label>
-    <input type="text" id="software-name" name="software-name" required>
-    <br><br>
-    <label for="software-link">Link Phần Mềm:</label>
-    <input type="url" id="software-link" name="software-link" required>
-    <br><br>
-    <input type="submit" value="Cập Nhật">
-</form>
-
-<script>
-document.getElementById('software-link-form').onsubmit = function(event) {
-    event.preventDefault();
-    var softwareName = document.getElementById('software-name').value;
-    var softwareLink = document.getElementById('software-link').value;
-    
-    // Gửi dữ liệu đến server để xử lý
-    console.log('Tên Phần Mềm: ' + softwareName);
-    console.log('Link Phần Mềm: ' + softwareLink);
-    
-    // Thêm mã để gửi dữ liệu đến server ở đây
-};
-</script>
+    <div class="container">
+        <header>
+            <h1>Software Categories</h1>
+            <p>Discover different types of software and their uses.</p>
+        </header>
+        <section class="category-list">
+            <div class="category-item">
+                <h2>Productivity Software</h2>
+                <p>Includes word processors, spreadsheets, and other tools to help you be more productive.</p>
+                <ul>
+                    <li>Microsoft Office</li>
+                    <li>Google Docs</li>
+                    <li>Evernote</li>
+                </ul>
+            </div>
+            <div class="category-item">
+                <h2>Security Software</h2>
+                <p>Protect your computer and data with antivirus, firewalls, and other security tools.</p>
+                <ul>
+                    <li>McAfee</li>
+                    <li>Norton Antivirus</li>
+                    <li>Bitdefender</li>
+                </ul>
+            </div>
+            <div class="category-item">
+                <h2>Graphic Design Software</h2>
+                <p>Tools for creating and editing images, graphics, and designs.</p>
+                <ul>
+                    <li>Adobe Photoshop</li>
+                    <li>CorelDRAW</li>
+                    <li>GIMP</li>
+                </ul>
+            </div>
+            <!-- Add more categories as needed -->
+        </section>
+    </div>
 </body>
 </html>
