@@ -3,82 +3,254 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Software Directory</title>
+    <title>Top 40 Software Directory</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 20px;
-            background-color: #f0f0f0;
+            background-color: #f4f4f4;
         }
         h1 {
-            color: #333;
             text-align: center;
+            color: #333;
         }
-        .software-list {
-            list-style-type: none;
-            padding: 0;
-            max-width: 600px;
+        table {
+            width: 100%;
+            max-width: 1200px;
             margin: 0 auto;
+            border-collapse: collapse;
             background-color: #fff;
-            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        .software-item {
-            margin: 10px 0;
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
         }
-        .software-item a {
-            text-decoration: none;
+        th {
+            background-color: #007BFF;
+            color: #fff;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        a {
             color: #007BFF;
-            font-weight: bold;
+            text-decoration: none;
         }
-        .software-item a:hover {
+        a:hover {
             text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <h1>Software Directory</h1>
-    <ul class="software-list">
-        <li class="software-item"><a href="https://www.microsoft.com/en-us/microsoft-365/word" target="_blank">Microsoft Word</a></li>
-        <li class="software-item"><a href="https://www.adobe.com/products/photoshop.html" target="_blank">Adobe Photoshop</a></li>
-        <li class="software-item"><a href="https://code.visualstudio.com/" target="_blank">Visual Studio Code</a></li>
-        <li class="software-item"><a href="https://www.google.com/chrome/" target="_blank">Google Chrome</a></li>
-        <li class="software-item"><a href="https://slack.com/" target="_blank">Slack</a></li>
-        <li class="software-item"><a href="https://www.apple.com/itunes/" target="_blank">iTunes</a></li>
-        <li class="software-item"><a href="https://www.skype.com/" target="_blank">Skype</a></li>
-        <li class="software-item"><a href="https://www.mozilla.org/firefox/" target="_blank">Mozilla Firefox</a></li>
-        <li class="software-item"><a href="https://www.dropbox.com/" target="_blank">Dropbox</a></li>
-        <li class="software-item"><a href="https://www.spotify.com/" target="_blank">Spotify</a></li>
-        <li class="software-item"><a href="https://www.zoom.us/" target="_blank">Zoom</a></li>
-        <li class="software-item"><a href="https://www.microsoft.com/en-us/windows" target="_blank">Microsoft Windows</a></li>
-        <li class="software-item"><a href="https://www.apple.com/macos/" target="_blank">macOS</a></li>
-        <li class="software-item"><a href="https://www.linux.org/" target="_blank">Linux</a></li>
-        <li class="software-item"><a href="https://www.getpostman.com/" target="_blank">Postman</a></li>
-        <li class="software-item"><a href="https://www.jetbrains.com/pycharm/" target="_blank">PyCharm</a></li>
-        <li class="software-item"><a href="https://www.virtualbox.org/" target="_blank">VirtualBox</a></li>
-        <li class="software-item"><a href="https://www.vmware.com/" target="_blank">VMware</a></li>
-        <li class="software-item"><a href="https://www.adobe.com/products/illustrator.html" target="_blank">Adobe Illustrator</a></li>
-        <li class="software-item"><a href="https://www.autodesk.com/products/autocad/overview" target="_blank">AutoCAD</a></li>
-        <li class="software-item"><a href="https://www.notion.so/" target="_blank">Notion</a></li>
-        <li class="software-item"><a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank">Microsoft Excel</a></li>
-        <li class="software-item"><a href="https://www.sublimetext.com/" target="_blank">Sublime Text</a></li>
-        <li class="software-item"><a href="https://www.git-scm.com/" target="_blank">Git</a></li>
-        <li class="software-item"><a href="https://www.docker.com/" target="_blank">Docker</a></li>
-        <li class="software-item"><a href="https://www.mysql.com/" target="_blank">MySQL</a></li>
-        <li class="software-item"><a href="https://www.mongodb.com/" target="_blank">MongoDB</a></li>
-        <li class="software-item"><a href="https://www.jenkins.io/" target="_blank">Jenkins</a></li>
-        <li class="software-item"><a href="https://www.kubernetes.io/" target="_blank">Kubernetes</a></li>
-        <li class="software-item"><a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a></li>
-        <li class="software-item"><a href="https://www.python.org/" target="_blank">Python</a></li>
-        <li class="software-item"><a href="https://www.ruby-lang.org/" target="_blank">Ruby</a></li>
-        <li class="software-item"><a href="https://www.java.com/" target="_blank">Java</a></li>
-        <li class="software-item"><a href="https://www.php.net/" target="_blank">PHP</a></li>
-        <li class="software-item"><a href="https://www.nodejs.org/" target="_blank">Node.js</a></li>
-        <li class="software-item"><a href="https://www.rust-lang.org/" target="_blank">Rust</a></li>
-        <li class="software-item"><a href="https://www.golang.org/" target="_blank">Go</a></li>
-        <li class="software-item"><a href="https://www.adobe.com/products/acrobat.html" target="_blank">Adobe Acrobat</a></li>
-        <li class="software-item"><a href="https://www.photoshop.com/" target="_blank">Photoshop</a></li>
-    </ul>
+    <h1>Top 40 Software Directory</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Software Name</th>
+                <th>Details</th>
+                <th>Official Link</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Microsoft Word</td>
+                <td>A powerful word processing software by Microsoft.</td>
+                <td><a href="https://www.microsoft.com/en-us/microsoft-365/word" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Adobe Photoshop</td>
+                <td>A leading software for photo editing and graphic design.</td>
+                <td><a href="https://www.adobe.com/products/photoshop.html" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Visual Studio Code</td>
+                <td>A free, open-source code editor by Microsoft.</td>
+                <td><a href="https://code.visualstudio.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Google Chrome</td>
+                <td>A fast and secure web browser by Google.</td>
+                <td><a href="https://www.google.com/chrome/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Slack</td>
+                <td>A communication platform for teams and businesses.</td>
+                <td><a href="https://slack.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>iTunes</td>
+                <td>A media player and library by Apple.</td>
+                <td><a href="https://www.apple.com/itunes/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Skype</td>
+                <td>A popular video calling and messaging app by Microsoft.</td>
+                <td><a href="https://www.skype.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Mozilla Firefox</td>
+                <td>A free and open-source web browser by Mozilla.</td>
+                <td><a href="https://www.mozilla.org/firefox/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Dropbox</td>
+                <td>A cloud storage service for file sharing and collaboration.</td>
+                <td><a href="https://www.dropbox.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Spotify</td>
+                <td>A music streaming service with a vast library of songs.</td>
+                <td><a href="https://www.spotify.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Zoom</td>
+                <td>A video conferencing tool for virtual meetings.</td>
+                <td><a href="https://www.zoom.us/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Microsoft Windows</td>
+                <td>The world's most popular operating system for PCs.</td>
+                <td><a href="https://www.microsoft.com/en-us/windows" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>macOS</td>
+                <td>The operating system for Apple's Mac computers.</td>
+                <td><a href="https://www.apple.com/macos/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Linux</td>
+                <td>An open-source operating system used by developers.</td>
+                <td><a href="https://www.linux.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Postman</td>
+                <td>A collaboration platform for API development.</td>
+                <td><a href="https://www.getpostman.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>PyCharm</td>
+                <td>An integrated development environment (IDE) for Python.</td>
+                <td><a href="https://www.jetbrains.com/pycharm/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>VirtualBox</td>
+                <td>A free and open-source virtual machine software.</td>
+                <td><a href="https://www.virtualbox.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>VMware</td>
+                <td>A leading platform for virtualization and cloud computing.</td>
+                <td><a href="https://www.vmware.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Adobe Illustrator</td>
+                <td>A vector graphics editor for creating digital illustrations.</td>
+                <td><a href="https://www.adobe.com/products/illustrator.html" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>AutoCAD</td>
+                <td>A computer-aided design (CAD) software for drafting.</td>
+                <td><a href="https://www.autodesk.com/products/autocad/overview" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Notion</td>
+                <td>An all-in-one workspace for notes, tasks, and projects.</td>
+                <td><a href="https://www.notion.so/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Microsoft Excel</td>
+                <td>A spreadsheet software used for data analysis and visualization.</td>
+                <td><a href="https://www.microsoft.com/en-us/microsoft-365/excel" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Sublime Text</td>
+                <td>A lightweight text editor for coding and markup.</td>
+                <td><a href="https://www.sublimetext.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Git</td>
+                <td>A version control system for tracking changes in code.</td>
+                <td><a href="https://www.git-scm.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Docker</td>
+                <td>A platform for developing, shipping, and running applications in containers.</td>
+                <td><a href="https://www.docker.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>MySQL</td>
+                <td>An open-source relational database management system.</td>
+                <td><a href="https://www.mysql.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>MongoDB</td>
+                <td>A NoSQL database for modern, scalable applications.</td>
+                <td><a href="https://www.mongodb.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Jenkins</td>
+                <td>An open-source automation server for continuous integration/continuous delivery (CI/CD).</td>
+                <td><a href="https://www.jenkins.io/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Kubernetes</td>
+                <td>An open-source system for automating the deployment, scaling, and management of containerized applications.</td>
+                <td><a href="https://www.kubernetes.io/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>PostgreSQL</td>
+                <td>A powerful, open-source object-relational database system.</td>
+                <td><a href="https://www.postgresql.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Python</td>
+                <td>A high-level, interpreted programming language for general-purpose programming.</td>
+                <td><a href="https://www.python.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Ruby</td>
+                <td>A dynamic, open-source programming language with a focus on simplicity.</td>
+                <td><a href="https://www.ruby-lang.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Java</td>
+                <td>A high-level programming language used for building platform-independent applications.</td>
+                <td><a href="https://www.java.com/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>PHP</td>
+                <td>A popular general-purpose scripting language that is especially suited to web development.</td>
+                <td><a href="https://www.php.net/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Node.js</td>
+                <td>A JavaScript runtime built on Chrome's V8 JavaScript engine.</td>
+                <td><a href="https://www.nodejs.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Rust</td>
+                <td>A systems programming language focused on safety, speed, and concurrency.</td>
+                <td><a href="https://www.rust-lang.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Go</td>
+                <td>An open-source programming language that makes it easy to build simple, reliable, and efficient software.</td>
+                <td><a href="https://www.golang.org/" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Adobe Acrobat</td>
+                <td>A software suite for viewing, creating, and managing PDF documents.</td>
+                <td><a href="https://www.adobe.com/products/acrobat.html" target="_blank">Visit Site</a></td>
+            </tr>
+            <tr>
+                <td>Photoshop</td>
+                <td>Image editing and graphic design software by Adobe.</td>
+                <td><a href="https://www.photoshop.com/" target="_blank">Visit Site</a></td>
+            </tr>
+        </tbody>
+    </table>
 </body>
 </html>
