@@ -1,96 +1,141 @@
-import React, { useState, useEffect } from "react";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { motion } from "framer-motion";
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danh Sách Phần Mềm</title>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const softwareList = [
+        { name: "Microsoft Word", windows: true, mac: true },
+        { name: "Paint.NET", windows: true, mac: false },
+        { name: "Final Cut Pro", windows: false, mac: true },
+        { name: "Adobe Photoshop", windows: true, mac: true },
+        { name: "Notepad++", windows: true, mac: false },
+        { name: "iMovie", windows: false, mac: true },
+        { name: "Visual Studio", windows: true, mac: true },
+        { name: "Xcode", windows: false, mac: true },
+      ];
 
-const softwareList = [
-  { name: "Microsoft Word", windows: true, mac: true },
-  { name: "Paint.NET", windows: true, mac: false },
-  { name: "Final Cut Pro", windows: false, mac: true },
-  { name: "Adobe Photoshop", windows: true, mac: true },
-  { name: "Notepad++", windows: true, mac: false },
-  { name: "iMovie", windows: false, mac: true },
-  { name: "Visual Studio", windows: true, mac: true },
-  { name: "Xcode", windows: false, mac: true },
-];
+      const searchInput = document.getElementById("searchInput");
+      const buttons = document.querySelectorAll(".filter-btn");
+      const container = document.getElementById("softwareContainer");
 
-export default function SoftwareList() {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [filterOS, setFilterOS] = useState("all");
+      function getFilter() {
+        return localStorage.getItem("filterOS") || "all";
+      }
 
-  // Load filter settings from localStorage
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const savedOS = localStorage.getItem("filterOS");
-      const savedSearch = localStorage.getItem("searchTerm");
-      if (savedOS) setFilterOS(savedOS);
-      if (savedSearch) setSearchTerm(savedSearch);
+      function getSearchTerm() {
+        return localStorage.getItem("searchTerm") || "";
+      }
+
+      function renderList() {
+        const filterOS = getFilter();
+        const searchTerm = getSearchTerm().toLowerCase();
+        container.innerHTML = "";
+
+        const filtered = softwareList.filter((item) => {
+          const matchOS =
+            filterOS === "all" ||
+            (filterOS === "windows" && item.windows) ||
+            (filterOS === "mac" && item.mac);
+          const matchSearch = item.name.toLowerCase().includes(searchTerm);
+          return matchOS && matchSearch;
+        });
+
+        filtered.forEach((item) => {
+          const card = document.createElement("div");
+          card.className = "card";
+          card.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>Windows: <strong>${item.windows ? "Có" : "Không"}</strong></p>
+            <p>macOS: <strong>${item.mac ? "Có" : "Không"}</strong></p>
+          `;
+          container.appendChild(card);
+        });
+      }
+
+      searchInput.value = getSearchTerm();
+      searchInput.addEventListener("input", (e) => {
+        localStorage.setItem("searchTerm", e.target.value);
+        renderList();
+      });
+
+      buttons.forEach((btn) => {
+        btn.addEventListener("click", () => {
+          localStorage.setItem("filterOS", btn.dataset.os);
+          buttons.forEach((b) => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderList();
+        });
+        if (btn.dataset.os === getFilter()) {
+          btn.classList.add("active");
+        }
+      });
+
+      renderList();
+    });
+  </script>
+  <style>
+    body {
+      font-family: sans-serif;
+      background: linear-gradient(to bottom right, #f3f4f6, #d1d5db);
+      padding: 2rem;
     }
-  }, []);
-
-  // Save filter settings to localStorage
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      localStorage.setItem("filterOS", filterOS);
-      localStorage.setItem("searchTerm", searchTerm);
+    h1 {
+      text-align: center;
+      font-size: 2rem;
+      margin-bottom: 1.5rem;
     }
-  }, [filterOS, searchTerm]);
-
-  const filteredList = softwareList.filter((software) => {
-    const matchesSearch = software.name.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesOS =
-      filterOS === "all" ||
-      (filterOS === "windows" && software.windows) ||
-      (filterOS === "mac" && software.mac);
-    return matchesSearch && matchesOS;
-  });
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-100 to-gray-300 p-6">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-6 text-center">Phần Mềm Cho Windows & macOS</h1>
-
-        <div className="flex flex-col md:flex-row md:items-center gap-4 mb-6">
-          <Input
-            type="text"
-            placeholder="Tìm kiếm phần mềm..."
-            className="flex-1"
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-          />
-          <div className="flex gap-2">
-            <Button variant={filterOS === "all" ? "default" : "outline"} onClick={() => setFilterOS("all")}>Tất cả</Button>
-            <Button variant={filterOS === "windows" ? "default" : "outline"} onClick={() => setFilterOS("windows")}>Windows</Button>
-            <Button variant={filterOS === "mac" ? "default" : "outline"} onClick={() => setFilterOS("mac")}>macOS</Button>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {filteredList.map((software, index) => (
-            <motion.div
-              key={software.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.05 }}
-            >
-              <Card className="rounded-2xl shadow-md hover:shadow-xl transition-shadow">
-                <CardContent className="p-4">
-                  <h2 className="text-xl font-semibold mb-2">{software.name}</h2>
-                  <div className="flex justify-between">
-                    <span className={`text-sm font-medium ${software.windows ? 'text-green-600' : 'text-red-500'}`}>
-                      Windows: {software.windows ? 'Có' : 'Không'}
-                    </span>
-                    <span className={`text-sm font-medium ${software.mac ? 'text-green-600' : 'text-red-500'}`}>
-                      macOS: {software.mac ? 'Có' : 'Không'}
-                    </span>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      justify-content: center;
+    }
+    input {
+      padding: 0.5rem 1rem;
+      border: 1px solid #ccc;
+      border-radius: 0.5rem;
+      flex-grow: 1;
+      max-width: 300px;
+    }
+    .filter-btn {
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.5rem;
+      background: white;
+      cursor: pointer;
+    }
+    .filter-btn.active {
+      background: #2563eb;
+      color: white;
+    }
+    #softwareContainer {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1rem;
+    }
+    .card {
+      background: white;
+      padding: 1rem;
+      border-radius: 0.75rem;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    }
+    .card h3 {
+      margin-bottom: 0.5rem;
+    }
+  </style>
+</head>
+<body>
+  <h1>Phần Mềm Cho Windows & macOS</h1>
+  <div class="controls">
+    <input id="searchInput" type="text" placeholder="Tìm kiếm phần mềm..." />
+    <button class="filter-btn" data-os="all">Tất cả</button>
+    <button class="filter-btn" data-os="windows">Windows</button>
+    <button class="filter-btn" data-os="mac">macOS</button>
+  </div>
+  <div id="softwareContainer"></div>
+</body>
+</html>
