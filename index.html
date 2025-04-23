@@ -7,19 +7,22 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const softwareList = [
-        { name: "Microsoft Word", windows: true, mac: true },
-        { name: "Paint.NET", windows: true, mac: false },
-        { name: "Final Cut Pro", windows: false, mac: true },
-        { name: "Adobe Photoshop", windows: true, mac: true },
-        { name: "Notepad++", windows: true, mac: false },
-        { name: "iMovie", windows: false, mac: true },
-        { name: "Visual Studio", windows: true, mac: true },
-        { name: "Xcode", windows: false, mac: true },
+        { name: "Microsoft Word", windows: true, mac: true, link: "https://www.microsoft.com/word", icon: "📄", category: "Văn phòng" },
+        { name: "Paint.NET", windows: true, mac: false, link: "https://www.getpaint.net/", icon: "🎨", category: "Thiết kế" },
+        { name: "Final Cut Pro", windows: false, mac: true, link: "https://www.apple.com/final-cut-pro/", icon: "🎬", category: "Video" },
+        { name: "Adobe Photoshop", windows: true, mac: true, link: "https://www.adobe.com/products/photoshop.html", icon: "🖌️", category: "Thiết kế" },
+        { name: "Notepad++", windows: true, mac: false, link: "https://notepad-plus-plus.org/", icon: "📝", category: "Lập trình" },
+        { name: "iMovie", windows: false, mac: true, link: "https://www.apple.com/imovie/", icon: "🎞️", category: "Video" },
+        { name: "Visual Studio", windows: true, mac: true, link: "https://visualstudio.microsoft.com/", icon: "💻", category: "Lập trình" },
+        { name: "Xcode", windows: false, mac: true, link: "https://developer.apple.com/xcode/", icon: "🔧", category: "Lập trình" },
       ];
+
+      let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
 
       const searchInput = document.getElementById("searchInput");
       const buttons = document.querySelectorAll(".filter-btn");
       const container = document.getElementById("softwareContainer");
+      const exportBtn = document.getElementById("exportCSV");
 
       function getFilter() {
         return localStorage.getItem("filterOS") || "all";
@@ -27,6 +30,16 @@
 
       function getSearchTerm() {
         return localStorage.getItem("searchTerm") || "";
+      }
+
+      function toggleFavorite(name) {
+        if (favorites.includes(name)) {
+          favorites = favorites.filter(item => item !== name);
+        } else {
+          favorites.push(name);
+        }
+        localStorage.setItem("favorites", JSON.stringify(favorites));
+        renderList();
       }
 
       function renderList() {
@@ -43,15 +56,33 @@
           return matchOS && matchSearch;
         });
 
-        filtered.forEach((item) => {
-          const card = document.createElement("div");
-          card.className = "card";
-          card.innerHTML = `
-            <h3>${item.name}</h3>
-            <p>Windows: <strong>${item.windows ? "Có" : "Không"}</strong></p>
-            <p>macOS: <strong>${item.mac ? "Có" : "Không"}</strong></p>
-          `;
-          container.appendChild(card);
+        const grouped = filtered.reduce((acc, item) => {
+          acc[item.category] = acc[item.category] || [];
+          acc[item.category].push(item);
+          return acc;
+        }, {});
+
+        Object.keys(grouped).forEach((category) => {
+          const section = document.createElement("div");
+          section.className = "category-section";
+          section.innerHTML = `<h2>${category}</h2>`;
+
+          grouped[category].forEach((item) => {
+            const isFav = favorites.includes(item.name);
+            const card = document.createElement("div");
+            card.className = "card";
+            card.innerHTML = `
+              <h3>${item.icon} ${item.name}</h3>
+              <p>Hệ điều hành: ${item.windows ? "🪟" : ""}${item.mac ? " 🍎" : ""}</p>
+              <a href="${item.link}" target="_blank" class="download-btn">Tải xuống</a>
+              <button class="fav-btn" onclick="toggleFavorite(\"${item.name}\")">
+                ${isFav ? "❤️" : "🤍"} Yêu thích
+              </button>
+            `;
+            section.appendChild(card);
+          });
+
+          container.appendChild(section);
         });
       }
 
@@ -73,18 +104,34 @@
         }
       });
 
+      exportBtn.addEventListener("click", () => {
+        let csvContent = "data:text/csv;charset=utf-8,Name,Windows,macOS,Category,Link\n";
+        softwareList.forEach(s => {
+          csvContent += `${s.name},${s.windows ? "Yes" : "No"},${s.mac ? "Yes" : "No"},${s.category},${s.link}\n`;
+        });
+        const encodedUri = encodeURI(csvContent);
+        const link = document.createElement("a");
+        link.setAttribute("href", encodedUri);
+        link.setAttribute("download", "software_list.csv");
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+      });
+
+      window.toggleFavorite = toggleFavorite;
       renderList();
     });
   </script>
   <style>
     body {
-      font-family: sans-serif;
-      background: linear-gradient(to bottom right, #f3f4f6, #d1d5db);
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(to bottom right, #e0f7fa, #eceff1);
       padding: 2rem;
     }
     h1 {
       text-align: center;
-      font-size: 2rem;
+      font-size: 2.5rem;
+      color: #00796b;
       margin-bottom: 1.5rem;
     }
     .controls {
@@ -96,35 +143,75 @@
     }
     input {
       padding: 0.5rem 1rem;
-      border: 1px solid #ccc;
+      border: 2px solid #4db6ac;
       border-radius: 0.5rem;
       flex-grow: 1;
       max-width: 300px;
     }
-    .filter-btn {
+    .filter-btn, #exportCSV {
       padding: 0.5rem 1rem;
       border: none;
       border-radius: 0.5rem;
       background: white;
       cursor: pointer;
+      border: 2px solid #4db6ac;
+      color: #00796b;
+      font-weight: bold;
     }
     .filter-btn.active {
-      background: #2563eb;
+      background: #00796b;
       color: white;
+      border-color: #004d40;
     }
     #softwareContainer {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    .category-section h2 {
+      font-size: 1.5rem;
+      color: #004d40;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid #80cbc4;
+      padding-bottom: 0.25rem;
+    }
+    .category-section {
+      padding-bottom: 1rem;
     }
     .card {
       background: white;
       padding: 1rem;
       border-radius: 0.75rem;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-bottom: 1rem;
     }
     .card h3 {
-      margin-bottom: 0.5rem;
+      margin-bottom: 0.25rem;
+      color: #004d40;
+    }
+    .card p {
+      margin: 0;
+      font-size: 0.95rem;
+    }
+    .download-btn, .fav-btn {
+      display: inline-block;
+      text-align: center;
+      padding: 0.5rem;
+      background: #00796b;
+      color: white;
+      border-radius: 0.5rem;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s ease;
+      margin-top: 0.25rem;
+      border: none;
+      cursor: pointer;
+    }
+    .download-btn:hover, .fav-btn:hover {
+      background: #004d40;
     }
   </style>
 </head>
@@ -135,6 +222,7 @@
     <button class="filter-btn" data-os="all">Tất cả</button>
     <button class="filter-btn" data-os="windows">Windows</button>
     <button class="filter-btn" data-os="mac">macOS</button>
+    <button id="exportCSV">📄 Xuất CSV</button>
   </div>
   <div id="softwareContainer"></div>
 </body>
