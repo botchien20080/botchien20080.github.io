@@ -7,14 +7,14 @@
   <script>
     document.addEventListener("DOMContentLoaded", function () {
       const softwareList = [
-        { name: "Microsoft Word", windows: true, mac: true, link: "https://www.microsoft.com/word", icon: "📄", category: "Văn phòng" },
-        { name: "Paint.NET", windows: true, mac: false, link: "https://www.getpaint.net/", icon: "🎨", category: "Thiết kế" },
-        { name: "Final Cut Pro", windows: false, mac: true, link: "https://www.apple.com/final-cut-pro/", icon: "🎬", category: "Video" },
-        { name: "Adobe Photoshop", windows: true, mac: true, link: "https://www.adobe.com/products/photoshop.html", icon: "🖌️", category: "Thiết kế" },
-        { name: "Notepad++", windows: true, mac: false, link: "https://notepad-plus-plus.org/", icon: "📝", category: "Lập trình" },
-        { name: "iMovie", windows: false, mac: true, link: "https://www.apple.com/imovie/", icon: "🎞️", category: "Video" },
-        { name: "Visual Studio", windows: true, mac: true, link: "https://visualstudio.microsoft.com/", icon: "💻", category: "Lập trình" },
-        { name: "Xcode", windows: false, mac: true, link: "https://developer.apple.com/xcode/", icon: "🔧", category: "Lập trình" },
+        { name: "Office 2021 Pro", windows: true, mac: true, link: "http://bit.ly/office2021nha", icon: "📄", category: "Văn phòng" },
+        { name: "Office 2019 Pro", windows: true, mac: false, link: "https://drive.google.com/file/d/1yLSUAlRGPL7aCnBouYENmGSQpWvYSyJM/edit", icon: "📄", category: "Văn phòng" },
+        { name: "Office 2016 Pro", windows: false, mac: true, link: "https://drive.google.com/file/d/1RIf6vac4hfEmPEARlYjgv--5s7ZvQInX/edit", icon: "📄", category: "Văn phòng" },
+        { name: "IE cho win 10", windows: true, mac: true, link: "https://bit.ly/iewin10", icon: "📄", category: "Văn phòng" },
+        { name: "Office 2010", windows: true, mac: false, link: "https://bit.ly/office2010nha/", icon: "📄", category: "Văn phòng" },
+        { name: "RevoUninstalPro", windows: true, mac: false, link: "https://bit.ly/revoninstallerpro", icon: "📄", category: "Văn phòng" },
+        { name: "Fix lỗi kết nối máy in 0x00000709 ...", windows: true, mac: false, link: "https://bit.ly/fixloiketnoimayin", icon: "📄", category: "Văn phòng" },
+        { name: "Key office 365", windows: true, mac: false, link: "https://bit.ly/3vrZnaW", icon: "📄", category: "Văn phòng" },
       ];
 
       let favorites = JSON.parse(localStorage.getItem("favorites")) || [];
